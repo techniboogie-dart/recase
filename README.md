@@ -1,3 +1,5 @@
+## ReCase ##
+
 Changes the case of the input text to the desire case convention.
 
     import 'package:recase/recase.dart';
