@@ -1,0 +1,8 @@
+.packages
+pubspec.lock
+
+.pub/
+.atom/
+build/
+
+web/lib/
