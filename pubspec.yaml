@@ -1,8 +1,8 @@
 name: recase
+version: 1.0.0+1
 description: Changes the case of the input text to the desire case convention.
 author: Keith Elliott <keith.b.elliott@gmail.com>
-homepage: https://github.com/nitehogg/recase
-version: 1.0.0
+homepage: https://github.com/techniboogie-dart/recase
 environment:
   sdk: '>=1.20.0'
 dev_dependencies:
