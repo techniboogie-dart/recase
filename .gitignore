@@ -1,6 +1,8 @@
 .packages
 pubspec.lock
-
+.idea
+.dart_tool
+.idea
 .pub/
 .atom/
 build/
