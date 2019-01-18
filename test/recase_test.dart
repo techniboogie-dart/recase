@@ -4,44 +4,105 @@ import 'package:recase/recase.dart';
 
 void main() {
   ReCase rcInput = new ReCase('This is-Some_sampleText. YouDig?');
+  ReCase allCapsInput = new ReCase('FOO_BAR');
 
-  test('Formats text to snake_case.', () {
-    expect(rcInput.snakeCase, equals('this_is_some_sample_text_you_dig?'));
+  group('snake_case', () {
+    test('from "${rcInput.originalText}".', () {
+      expect(rcInput.snakeCase, equals('this_is_some_sample_text_you_dig?'));
+    });
+
+    test('from "${allCapsInput.originalText}".', () {
+      expect(allCapsInput.snakeCase, equals('foo_bar'));
+    });
   });
 
-  test('Formats text to dot.case.', () {
-    expect(rcInput.dotCase, equals('this.is.some.sample.text.you.dig?'));
+  group('dot.case', () {
+    test('from "${rcInput.originalText}".', () {
+      expect(rcInput.dotCase, equals('this.is.some.sample.text.you.dig?'));
+    });
+
+    test('from "${allCapsInput.originalText}".', () {
+      expect(allCapsInput.dotCase, equals('foo.bar'));
+    });
   });
 
-  test('Formats text to path/case.', () {
-    expect(rcInput.pathCase, equals('this/is/some/sample/text/you/dig?'));
+  group('path/case', () {
+    test('from "${rcInput.originalText}".', () {
+      expect(rcInput.pathCase, equals('this/is/some/sample/text/you/dig?'));
+    });
+
+    test('from "${allCapsInput.originalText}".', () {
+      expect(allCapsInput.pathCase, equals('foo/bar'));
+    });
   });
 
-  test('Formats text to param-case.', () {
-    expect(rcInput.paramCase, equals('this-is-some-sample-text-you-dig?'));
+  group('param-case', () {
+    test('from "${rcInput.originalText}".', () {
+      expect(rcInput.paramCase, equals('this-is-some-sample-text-you-dig?'));
+    });
+
+    test('from "${allCapsInput.originalText}".', () {
+      expect(allCapsInput.paramCase, equals('foo-bar'));
+    });
   });
 
-  test('Formats text to PascalCase.', () {
-    expect(rcInput.pascalCase, equals('ThisIsSomeSampleTextYouDig?'));
+  group('PascalCase', () {
+    test('from "${rcInput.originalText}".', () {
+      expect(rcInput.pascalCase, equals('ThisIsSomeSampleTextYouDig?'));
+    });
+
+    test('from "${allCapsInput.originalText}".', () {
+      expect(allCapsInput.pascalCase, equals('FooBar'));
+    });
   });
 
-  test('Formats text to Header-Case.', () {
-    expect(rcInput.headerCase, equals('This-Is-Some-Sample-Text-You-Dig?'));
+  group('Header-Case', () {
+    test('from "${rcInput.originalText}".', () {
+      expect(rcInput.headerCase, equals('This-Is-Some-Sample-Text-You-Dig?'));
+    });
+
+    test('from "${allCapsInput.originalText}".', () {
+      expect(allCapsInput.headerCase, equals('Foo-Bar'));
+    });
   });
 
-  test('Formats text to Title Case.', () {
-    expect(rcInput.titleCase, equals('This Is Some Sample Text You Dig?'));
+  group('Title Case', () {
+    test('from "${rcInput.originalText}".', () {
+      expect(rcInput.titleCase, equals('This Is Some Sample Text You Dig?'));
+    });
+
+    test('from "${allCapsInput.originalText}".', () {
+      expect(allCapsInput.titleCase, equals('Foo Bar'));
+    });
   });
 
-  test('Formats text to camelCase.', () {
-    expect(rcInput.camelCase, equals('thisIsSomeSampleTextYouDig?'));
+  group('camelCase', () {
+    test('from "${rcInput.originalText}".', () {
+      expect(rcInput.camelCase, equals('thisIsSomeSampleTextYouDig?'));
+    });
+
+    test('from "${allCapsInput.originalText}".', () {
+      expect(allCapsInput.camelCase, equals('fooBar'));
+    });
   });
 
-  test('Formats text to Sentence case.', () {
-    expect(rcInput.sentenceCase, equals('This is some sample text you dig?'));
+  group('Sentence case', () {
+    test('from "${rcInput.originalText}".', () {
+      expect(rcInput.sentenceCase, equals('This is some sample text you dig?'));
+    });
+
+    test('from "${allCapsInput.originalText}".', () {
+      expect(allCapsInput.sentenceCase, equals('Foo bar'));
+    });
   });
 
-  test('Formats text to CONSTANT_CASE.', () {
-    expect(rcInput.constantCase, equals('THIS_IS_SOME_SAMPLE_TEXT_YOU_DIG?'));
+  group('CONSTANT_CASE', () {
+    test('from "${rcInput.originalText}".', () {
+      expect(rcInput.constantCase, equals('THIS_IS_SOME_SAMPLE_TEXT_YOU_DIG?'));
+    });
+
+    test('from "${allCapsInput.originalText}".', () {
+      expect(allCapsInput.constantCase, equals('FOO_BAR'));
+    });
   });
 }

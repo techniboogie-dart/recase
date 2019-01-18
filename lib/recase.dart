@@ -3,10 +3,18 @@ class ReCase {
   final RegExp _upperAlphaRegex = new RegExp(r'[A-Z]');
   final RegExp _symbolRegex = new RegExp(r'[ ./_\-]');
 
-  final List<String> _words = [];
+  String originalText;
+  List<String> _words;
 
   ReCase(String text) {
+    this.originalText = text;
+    this._words = _groupIntoWords(text);
+  }
+
+  List<String> _groupIntoWords(String text) {
     StringBuffer sb = new StringBuffer();
+    List<String> words = [];
+    bool isAllCaps = !text.contains(RegExp('[a-z]'));
 
     for (int i = 0; i < text.length; i++) {
       String char = new String.fromCharCode(text.codeUnitAt(i));
@@ -20,48 +28,47 @@ class ReCase {
 
       sb.write(char);
 
-      if (nextChar == null ||
-          _upperAlphaRegex.hasMatch(nextChar) ||
-          _symbolRegex.hasMatch(nextChar)) {
-        this._words.add(sb.toString());
+      bool isEndOfWord = nextChar == null ||
+          (_upperAlphaRegex.hasMatch(nextChar) && !isAllCaps) ||
+          _symbolRegex.hasMatch(nextChar);
+
+      if (isEndOfWord) {
+        words.add(sb.toString());
         sb.clear();
       }
     }
+
+    return words;
   }
 
-  /// The input text rendered as camelCase
+  /// camelCase
   String get camelCase => _getCamelCase();
 
-  // snake_case
-  /// The input text rendered as CONSTANT_CASE
+  /// CONSTANT_CASE
   String get constantCase => _getConstantCase();
 
-  // PascalCase
-  /// The input text rendered as dot.case
-  String get dotCase => _getSnakeCase(separator: '.');
-
-  // CONSTANT_CASE
-  /// The input text rendered as Header-Case
-  String get headerCase => _getPascalCase(separator: '-');
-
-  // camelCase
-  /// The input text rendered as param-case
-  String get paramCase => _getSnakeCase(separator: '-');
-
-  // Sentence case
-  /// The input text rendered as PascalCase
-  String get pascalCase => _getPascalCase();
-
-  /// The input text rendered as path/case
-  String get pathCase => _getSnakeCase(separator: '/');
-
-  /// The input text rendered as Sentence case
+  /// Sentence case
   String get sentenceCase => _getSentenceCase();
 
-  /// The input text rendered as snake_case
+  /// snake_case
   String get snakeCase => _getSnakeCase();
 
-  /// The input text rendered as Title Case
+  /// dot.case
+  String get dotCase => _getSnakeCase(separator: '.');
+
+  /// param-case
+  String get paramCase => _getSnakeCase(separator: '-');
+
+  /// path/case
+  String get pathCase => _getSnakeCase(separator: '/');
+
+  /// PascalCase
+  String get pascalCase => _getPascalCase();
+
+  /// Header-Case
+  String get headerCase => _getPascalCase(separator: '-');
+
+  /// Title Case
   String get titleCase => _getPascalCase(separator: ' ');
 
   String _getCamelCase({String separator: ''}) {

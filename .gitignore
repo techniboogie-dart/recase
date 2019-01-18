@@ -4,6 +4,7 @@
 .idea
 .pub/
 .atom/
+.vscode/
 build/
 
 web/lib/

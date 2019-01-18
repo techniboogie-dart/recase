@@ -1,5 +1,5 @@
 name: recase
-version: 2.0.0+1
+version: 2.0.1
 description: Changes the case of the input text to the desire case convention.
 author: Keith Elliott <keith.b.elliott@gmail.com>
 homepage: https://github.com/techniboogie-dart/recase
