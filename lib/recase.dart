@@ -31,10 +31,15 @@ class ReCase {
 
       sb.write(char);
 
-      bool isEndOfWord = nextChar == null
-          || (_upperAlphaRegex.hasMatch(nextChar) && !_upperAlphaRegex.hasMatch(char) && !isAllCaps)
-          || (_upperAlphaRegex.hasMatch(char) && _upperAlphaRegex.hasMatch(nextChar) && nextNextChar != null && _lowerAlphaRegex.hasMatch(nextNextChar))
-          || _symbolRegex.hasMatch(nextChar);
+      bool isEndOfWord = nextChar == null ||
+          (_upperAlphaRegex.hasMatch(nextChar) &&
+              !_upperAlphaRegex.hasMatch(char) &&
+              !isAllCaps) ||
+          (_upperAlphaRegex.hasMatch(char) &&
+              _upperAlphaRegex.hasMatch(nextChar) &&
+              nextNextChar != null &&
+              _lowerAlphaRegex.hasMatch(nextNextChar)) ||
+          _symbolRegex.hasMatch(nextChar);
 
       if (isEndOfWord) {
         words.add(sb.toString());
@@ -113,6 +118,5 @@ class ReCase {
     } else {
       return '${word.substring(0, 1).toUpperCase()}${word.substring(1).toLowerCase()}';
     }
-
   }
 }

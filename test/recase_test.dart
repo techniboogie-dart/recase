@@ -17,9 +17,9 @@ void main() {
     });
 
     test('from "${acronynInput.originalText}".', () {
-      expect(acronynInput.snakeCase, equals('my_http_db_connection_info_id_xml'));
+      expect(
+          acronynInput.snakeCase, equals('my_http_db_connection_info_id_xml'));
     });
-
   });
 
   group('dot.case', () {
@@ -46,7 +46,8 @@ void main() {
     });
 
     test('from "${acronynInput.originalText}".', () {
-      expect(acronynInput.pathCase, equals('my/http/db/connection/info/id/xml'));
+      expect(
+          acronynInput.pathCase, equals('my/http/db/connection/info/id/xml'));
     });
   });
 
@@ -60,7 +61,8 @@ void main() {
     });
 
     test('from "${acronynInput.originalText}".', () {
-      expect(acronynInput.paramCase, equals('my-http-db-connection-info-id-xml'));
+      expect(
+          acronynInput.paramCase, equals('my-http-db-connection-info-id-xml'));
     });
   });
 
@@ -88,7 +90,8 @@ void main() {
     });
 
     test('from "${acronynInput.originalText}".', () {
-      expect(acronynInput.headerCase, equals('My-Http-DB-Connection-Info-Id-Xml'));
+      expect(
+          acronynInput.headerCase, equals('My-Http-DB-Connection-Info-Id-Xml'));
     });
   });
 
@@ -102,7 +105,8 @@ void main() {
     });
 
     test('from "${acronynInput.originalText}".', () {
-      expect(acronynInput.titleCase, equals('My Http DB Connection Info Id Xml'));
+      expect(
+          acronynInput.titleCase, equals('My Http DB Connection Info Id Xml'));
     });
   });
 
@@ -130,7 +134,8 @@ void main() {
     });
 
     test('from "${acronynInput.originalText}".', () {
-      expect(acronynInput.sentenceCase, equals('My http db connection info id xml'));
+      expect(acronynInput.sentenceCase,
+          equals('My http db connection info id xml'));
     });
   });
 
@@ -144,7 +149,8 @@ void main() {
     });
 
     test('from "${acronynInput.originalText}".', () {
-      expect(acronynInput.constantCase, equals('MY_HTTP_DB_CONNECTION_INFO_ID_XML'));
+      expect(acronynInput.constantCase,
+          equals('MY_HTTP_DB_CONNECTION_INFO_ID_XML'));
     });
   });
 }
