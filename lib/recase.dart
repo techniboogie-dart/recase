@@ -1,6 +1,7 @@
 /// An instance of text to be re-cased.
 class ReCase {
   final RegExp _upperAlphaRegex = new RegExp(r'[A-Z]');
+  final RegExp _lowerAlphaRegex = new RegExp(r'[a-z]');
   final RegExp _symbolRegex = new RegExp(r'[ ./_\-]');
 
   String originalText;
@@ -21,16 +22,19 @@ class ReCase {
       String nextChar = (i + 1 == text.length
           ? null
           : new String.fromCharCode(text.codeUnitAt(i + 1)));
-
+      String nextNextChar = (i + 2 >= text.length
+          ? null
+          : new String.fromCharCode(text.codeUnitAt(i + 2)));
       if (_symbolRegex.hasMatch(char)) {
         continue;
       }
 
       sb.write(char);
 
-      bool isEndOfWord = nextChar == null ||
-          (_upperAlphaRegex.hasMatch(nextChar) && !isAllCaps) ||
-          _symbolRegex.hasMatch(nextChar);
+      bool isEndOfWord = nextChar == null
+          || (_upperAlphaRegex.hasMatch(nextChar) && !_upperAlphaRegex.hasMatch(char) && !isAllCaps)
+          || (_upperAlphaRegex.hasMatch(char) && _upperAlphaRegex.hasMatch(nextChar) && nextNextChar != null && _lowerAlphaRegex.hasMatch(nextNextChar))
+          || _symbolRegex.hasMatch(nextChar);
 
       if (isEndOfWord) {
         words.add(sb.toString());
@@ -104,6 +108,11 @@ class ReCase {
   }
 
   String _upperCaseFirstLetter(String word) {
-    return '${word.substring(0, 1).toUpperCase()}${word.substring(1).toLowerCase()}';
+    if (word.length == 2 && word.toLowerCase() != 'id') {
+      return '${word.substring(0, 1).toUpperCase()}${word.substring(1)}';
+    } else {
+      return '${word.substring(0, 1).toUpperCase()}${word.substring(1).toLowerCase()}';
+    }
+
   }
 }
