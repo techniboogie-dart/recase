@@ -3,7 +3,8 @@ import 'package:test/test.dart';
 import 'package:recase/recase.dart';
 
 void main() {
-  ReCase rcInput = new ReCase('This is-Some_sampleText. YouDig?');
+  String mockText = 'This is-Some_sampleText. YouDig?';
+  ReCase rcInput = new ReCase(mockText);
   ReCase allCapsInput = new ReCase('FOO_BAR');
 
   group('snake_case', () {
@@ -13,6 +14,10 @@ void main() {
 
     test('from "${allCapsInput.originalText}".', () {
       expect(allCapsInput.snakeCase, equals('foo_bar'));
+    });
+
+    test('from "${mockText}", using String extension.', () {
+      expect(mockText.snakeCase, equals('this_is_some_sample_text_you_dig?'));
     });
   });
 
@@ -24,6 +29,10 @@ void main() {
     test('from "${allCapsInput.originalText}".', () {
       expect(allCapsInput.dotCase, equals('foo.bar'));
     });
+
+    test('from "${mockText}", using String extension.', () {
+      expect(mockText.dotCase, equals('this.is.some.sample.text.you.dig?'));
+    });
   });
 
   group('path/case', () {
@@ -33,6 +42,10 @@ void main() {
 
     test('from "${allCapsInput.originalText}".', () {
       expect(allCapsInput.pathCase, equals('foo/bar'));
+    });
+
+    test('from "${mockText}", using String extension.', () {
+      expect(mockText.pathCase, equals('this/is/some/sample/text/you/dig?'));
     });
   });
 
@@ -44,6 +57,10 @@ void main() {
     test('from "${allCapsInput.originalText}".', () {
       expect(allCapsInput.paramCase, equals('foo-bar'));
     });
+
+    test('from "${mockText}", using String extension.', () {
+      expect(mockText.paramCase, equals('this-is-some-sample-text-you-dig?'));
+    });
   });
 
   group('PascalCase', () {
@@ -53,6 +70,10 @@ void main() {
 
     test('from "${allCapsInput.originalText}".', () {
       expect(allCapsInput.pascalCase, equals('FooBar'));
+    });
+
+    test('from "${mockText}", using String extension.', () {
+      expect(mockText.pascalCase, equals('ThisIsSomeSampleTextYouDig?'));
     });
   });
 
@@ -64,6 +85,10 @@ void main() {
     test('from "${allCapsInput.originalText}".', () {
       expect(allCapsInput.headerCase, equals('Foo-Bar'));
     });
+
+    test('from "${mockText}", using String extension.', () {
+      expect(mockText.headerCase, equals('This-Is-Some-Sample-Text-You-Dig?'));
+    });
   });
 
   group('Title Case', () {
@@ -73,6 +98,10 @@ void main() {
 
     test('from "${allCapsInput.originalText}".', () {
       expect(allCapsInput.titleCase, equals('Foo Bar'));
+    });
+
+    test('from "${mockText}", using String extension.', () {
+      expect(mockText.titleCase, equals('This Is Some Sample Text You Dig?'));
     });
   });
 
@@ -84,6 +113,10 @@ void main() {
     test('from "${allCapsInput.originalText}".', () {
       expect(allCapsInput.camelCase, equals('fooBar'));
     });
+
+    test('from "${mockText}", using String extension.', () {
+      expect(mockText.camelCase, equals('thisIsSomeSampleTextYouDig?'));
+    });
   });
 
   group('Sentence case', () {
@@ -94,6 +127,10 @@ void main() {
     test('from "${allCapsInput.originalText}".', () {
       expect(allCapsInput.sentenceCase, equals('Foo bar'));
     });
+
+    test('from "${mockText}", using String extension.', () {
+      expect(mockText.sentenceCase, equals('This is some sample text you dig?'));
+    });
   });
 
   group('CONSTANT_CASE', () {
@@ -103,6 +140,10 @@ void main() {
 
     test('from "${allCapsInput.originalText}".', () {
       expect(allCapsInput.constantCase, equals('FOO_BAR'));
+    });
+
+    test('from "${mockText}", using String extension.', () {
+      expect(mockText.constantCase, equals('THIS_IS_SOME_SAMPLE_TEXT_YOU_DIG?'));
     });
   });
 }
