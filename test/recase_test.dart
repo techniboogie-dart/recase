@@ -63,6 +63,20 @@ void main() {
     });
   });
 
+  group('colon:case', () {
+    test('from "${rcInput.originalText}".', () {
+      expect(rcInput.colonCase, equals('this:is:some:sample:text:you:dig?'));
+    });
+
+    test('from "${allCapsInput.originalText}".', () {
+      expect(allCapsInput.colonCase, equals('foo:bar'));
+    });
+
+    test('from "${mockText}", using String extension.', () {
+      expect(mockText.colonCase, equals('this:is:some:sample:text:you:dig?'));
+    });
+  });
+
   group('PascalCase', () {
     test('from "${rcInput.originalText}".', () {
       expect(rcInput.pascalCase, equals('ThisIsSomeSampleTextYouDig?'));

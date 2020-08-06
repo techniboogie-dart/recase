@@ -1,7 +1,7 @@
 /// An instance of text to be re-cased.
 class ReCase {
   final RegExp _upperAlphaRegex = new RegExp(r'[A-Z]');
-  final RegExp _symbolRegex = new RegExp(r'[ ./_\-]');
+  final RegExp _symbolRegex = new RegExp(r'[ ./_\-:]');
 
   String originalText;
   List<String> _words;
@@ -61,6 +61,9 @@ class ReCase {
 
   /// path/case
   String get pathCase => _getSnakeCase(separator: '/');
+
+  /// colon:case
+  String get colonCase => _getSnakeCase(separator: ':');
 
   /// PascalCase
   String get pascalCase => _getPascalCase();
@@ -123,6 +126,8 @@ extension StringReCase on String {
   String get paramCase => ReCase(this).paramCase;
 
   String get pathCase => ReCase(this).pathCase;
+
+  String get colonCase => ReCase(this).colonCase;
 
   String get pascalCase => ReCase(this).pascalCase;
 

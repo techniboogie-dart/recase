@@ -29,6 +29,7 @@ Supports:
 * dot.case
 * path/case
 * param-case
+* colon:case
 * PascalCase
 * Header-Case
 * Title Case
