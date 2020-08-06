@@ -65,6 +65,9 @@ class ReCase {
   /// colon:case
   String get colonCase => _getSnakeCase(separator: ':');
 
+   /// double::colon::case
+  String get doubleColonCase => _getSnakeCase(separator: '::');
+
   /// PascalCase
   String get pascalCase => _getPascalCase();
 
@@ -128,6 +131,8 @@ extension StringReCase on String {
   String get pathCase => ReCase(this).pathCase;
 
   String get colonCase => ReCase(this).colonCase;
+
+  String get doubleColonCase => ReCase(this).doubleColonCase;
 
   String get pascalCase => ReCase(this).pascalCase;
 

@@ -77,6 +77,26 @@ void main() {
     });
   });
 
+  group('double::colon::case', () {
+    test('from "${rcInput.originalText}".', () {
+      expect(rcInput.doubleColonCase, equals('this::is::some::sample::text::you::dig?'));
+    });
+
+    test('from "${allCapsInput.originalText}".', () {
+      expect(allCapsInput.doubleColonCase, equals('foo::bar'));
+    });
+
+    test('from "${mockText}", using String extension.', () {
+      expect(mockText.doubleColonCase,
+          equals('this::is::some::sample::text::you::dig?'));
+    });
+
+    test('To "double colon extension", using String extension.', () {
+      expect(ReCase('double::colon::extension').sentenceCase,
+          equals('Double colon extension'));
+    });
+  });
+
   group('PascalCase', () {
     test('from "${rcInput.originalText}".', () {
       expect(rcInput.pascalCase, equals('ThisIsSomeSampleTextYouDig?'));
