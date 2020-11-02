@@ -8,6 +8,10 @@ void main() {
   ReCase allCapsInput = new ReCase('FOO_BAR');
 
   group('snake_case', () {
+    test('from empty string.', () {
+      expect(''.snakeCase, equals(''));
+    });
+
     test('from "${rcInput.originalText}".', () {
       expect(rcInput.snakeCase, equals('this_is_some_sample_text_you_dig?'));
     });
@@ -22,6 +26,10 @@ void main() {
   });
 
   group('dot.case', () {
+    test('from empty string.', () {
+      expect(''.dotCase, equals(''));
+    });
+
     test('from "${rcInput.originalText}".', () {
       expect(rcInput.dotCase, equals('this.is.some.sample.text.you.dig?'));
     });
@@ -36,6 +44,10 @@ void main() {
   });
 
   group('path/case', () {
+    test('from empty string.', () {
+      expect(''.pathCase, equals(''));
+    });
+
     test('from "${rcInput.originalText}".', () {
       expect(rcInput.pathCase, equals('this/is/some/sample/text/you/dig?'));
     });
@@ -50,6 +62,10 @@ void main() {
   });
 
   group('param-case', () {
+    test('from empty string.', () {
+      expect(''.paramCase, equals(''));
+    });
+
     test('from "${rcInput.originalText}".', () {
       expect(rcInput.paramCase, equals('this-is-some-sample-text-you-dig?'));
     });
@@ -64,6 +80,10 @@ void main() {
   });
 
   group('PascalCase', () {
+    test('from empty string.', () {
+      expect(''.pascalCase, equals(''));
+    });
+
     test('from "${rcInput.originalText}".', () {
       expect(rcInput.pascalCase, equals('ThisIsSomeSampleTextYouDig?'));
     });
@@ -78,6 +98,10 @@ void main() {
   });
 
   group('Header-Case', () {
+    test('from empty string.', () {
+      expect(''.headerCase, equals(''));
+    });
+
     test('from "${rcInput.originalText}".', () {
       expect(rcInput.headerCase, equals('This-Is-Some-Sample-Text-You-Dig?'));
     });
@@ -92,6 +116,10 @@ void main() {
   });
 
   group('Title Case', () {
+    test('from empty string.', () {
+      expect(''.titleCase, equals(''));
+    });
+
     test('from "${rcInput.originalText}".', () {
       expect(rcInput.titleCase, equals('This Is Some Sample Text You Dig?'));
     });
@@ -106,6 +134,10 @@ void main() {
   });
 
   group('camelCase', () {
+    test('from empty string.', () {
+      expect(''.camelCase, equals(''));
+    });
+
     test('from "${rcInput.originalText}".', () {
       expect(rcInput.camelCase, equals('thisIsSomeSampleTextYouDig?'));
     });
@@ -120,6 +152,10 @@ void main() {
   });
 
   group('Sentence case', () {
+    test('from empty string.', () {
+      expect(''.sentenceCase, equals(''));
+    });
+
     test('from "${rcInput.originalText}".', () {
       expect(rcInput.sentenceCase, equals('This is some sample text you dig?'));
     });
@@ -129,11 +165,16 @@ void main() {
     });
 
     test('from "${mockText}", using String extension.', () {
-      expect(mockText.sentenceCase, equals('This is some sample text you dig?'));
+      expect(
+          mockText.sentenceCase, equals('This is some sample text you dig?'));
     });
   });
 
   group('CONSTANT_CASE', () {
+    test('from empty string.', () {
+      expect(''.constantCase, equals(''));
+    });
+
     test('from "${rcInput.originalText}".', () {
       expect(rcInput.constantCase, equals('THIS_IS_SOME_SAMPLE_TEXT_YOU_DIG?'));
     });
@@ -143,7 +184,8 @@ void main() {
     });
 
     test('from "${mockText}", using String extension.', () {
-      expect(mockText.constantCase, equals('THIS_IS_SOME_SAMPLE_TEXT_YOU_DIG?'));
+      expect(
+          mockText.constantCase, equals('THIS_IS_SOME_SAMPLE_TEXT_YOU_DIG?'));
     });
   });
 }
