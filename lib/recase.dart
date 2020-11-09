@@ -1,11 +1,11 @@
 /// An instance of text to be re-cased.
 class ReCase {
   final RegExp _upperAlphaRegex = new RegExp(r'[A-Z]');
-  final RegExp _symbolRegex = new RegExp(r'[ ./_\-]');
+
+  final symbolSet = {' ', '.', '/', '_', '\\', '-'};
 
   String originalText;
   List<String> _words;
-
   ReCase(String text) {
     this.originalText = text;
     this._words = _groupIntoWords(text);
@@ -14,15 +14,13 @@ class ReCase {
   List<String> _groupIntoWords(String text) {
     StringBuffer sb = new StringBuffer();
     List<String> words = [];
-    bool isAllCaps = !text.contains(RegExp('[a-z]'));
+    bool isAllCaps = text.toUpperCase() == text;
 
     for (int i = 0; i < text.length; i++) {
-      String char = new String.fromCharCode(text.codeUnitAt(i));
-      String nextChar = (i + 1 == text.length
-          ? null
-          : new String.fromCharCode(text.codeUnitAt(i + 1)));
+      String char = text[i];
+      String nextChar = i + 1 == text.length ? null : text[i + 1];
 
-      if (_symbolRegex.hasMatch(char)) {
+      if (symbolSet.contains(char)) {
         continue;
       }
 
@@ -30,7 +28,7 @@ class ReCase {
 
       bool isEndOfWord = nextChar == null ||
           (_upperAlphaRegex.hasMatch(nextChar) && !isAllCaps) ||
-          _symbolRegex.hasMatch(nextChar);
+          symbolSet.contains(nextChar);
 
       if (isEndOfWord) {
         words.add(sb.toString());
@@ -73,7 +71,9 @@ class ReCase {
 
   String _getCamelCase({String separator: ''}) {
     List<String> words = this._words.map(_upperCaseFirstLetter).toList();
-    words[0] = words[0].toLowerCase();
+    if (_words.isNotEmpty) {
+      words[0] = words[0].toLowerCase();
+    }
 
     return words.join(separator);
   }
@@ -92,7 +92,9 @@ class ReCase {
 
   String _getSentenceCase({String separator: ' '}) {
     List<String> words = this._words.map((word) => word.toLowerCase()).toList();
-    words[0] = _upperCaseFirstLetter(words[0]);
+    if (_words.isNotEmpty) {
+      words[0] = _upperCaseFirstLetter(words[0]);
+    }
 
     return words.join(separator);
   }
@@ -109,7 +111,6 @@ class ReCase {
 }
 
 extension StringReCase on String {
-
   String get camelCase => ReCase(this).camelCase;
 
   String get constantCase => ReCase(this).constantCase;
