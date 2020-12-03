@@ -4,8 +4,8 @@ import 'package:recase/recase.dart';
 
 void main() {
   String mockText = 'This is-Some_sampleText. YouDig?';
-  ReCase rcInput = new ReCase(mockText);
-  ReCase allCapsInput = new ReCase('FOO_BAR');
+  ReCase rcInput = ReCase(mockText);
+  ReCase allCapsInput = ReCase('FOO_BAR');
 
   group('snake_case', () {
     test('from empty string.', () {
