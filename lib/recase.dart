@@ -1,24 +1,25 @@
 /// An instance of text to be re-cased.
 class ReCase {
-  final RegExp _upperAlphaRegex = new RegExp(r'[A-Z]');
+  final RegExp _upperAlphaRegex = RegExp(r'[A-Z]');
 
   final symbolSet = {' ', '.', '/', '_', '\\', '-'};
 
-  String originalText;
-  List<String> _words;
+  late String originalText;
+  late List<String> _words;
+
   ReCase(String text) {
     this.originalText = text;
     this._words = _groupIntoWords(text);
   }
 
   List<String> _groupIntoWords(String text) {
-    StringBuffer sb = new StringBuffer();
+    StringBuffer sb = StringBuffer();
     List<String> words = [];
     bool isAllCaps = text.toUpperCase() == text;
 
     for (int i = 0; i < text.length; i++) {
       String char = text[i];
-      String nextChar = i + 1 == text.length ? null : text[i + 1];
+      String? nextChar = i + 1 == text.length ? null : text[i + 1];
 
       if (symbolSet.contains(char)) {
         continue;
