@@ -70,6 +70,9 @@ class ReCase {
   /// Title Case
   String get titleCase => _getPascalCase(separator: ' ');
 
+  /// PascalDotCase
+  String get pascalDotCase => _getPascalCase(separator: '.');
+
   String _getCamelCase({String separator = ''}) {
     List<String> words = this._words.map(_upperCaseFirstLetter).toList();
     if (_words.isNotEmpty) {
@@ -131,4 +134,6 @@ extension StringReCase on String {
   String get headerCase => ReCase(this).headerCase;
 
   String get titleCase => ReCase(this).titleCase;
+
+  String get pascalDotCase => ReCase(this).pascalDotCase;
 }
