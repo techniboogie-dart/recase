@@ -188,4 +188,24 @@ void main() {
           mockText.constantCase, equals('THIS_IS_SOME_SAMPLE_TEXT_YOU_DIG?'));
     });
   });
+
+  group('Pascal.Dot.Case', () {
+    test('from empty string.', () {
+      expect(''.pascalDotCase, equals(''));
+    });
+
+    test('from "${rcInput.originalText}".', () {
+      expect(
+          rcInput.pascalDotCase, equals('This.Is.Some.Sample.Text.You.Dig?'));
+    });
+
+    test('from "${allCapsInput.originalText}".', () {
+      expect(allCapsInput.pascalDotCase, equals('Foo.Bar'));
+    });
+
+    test('from "${mockText}", using String extension.', () {
+      expect(
+          mockText.pascalDotCase, equals('This.Is.Some.Sample.Text.You.Dig?'));
+    });
+  });
 }
