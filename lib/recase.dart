@@ -140,12 +140,12 @@ class ReCase {
 
     // apply Title Case
     words.asMap().entries.map((word) {
-      var isFirstWord = word.key != 0;
+      var isFirstWord = word.key == 0;
       var isAfterPunctuation = punctuationList.indexOf(words[word.key - 1]) > 0;
       var isExcluded = exclusionListEng.indexOf(word.value) > 0;
 
-      // If not first word exception AND is part of the exclusion list
-      if (isFirstWord && !isAfterPunctuation && isExcluded) {
+      // If NOT first word exception AND is NOT after punctuation AND is part of the exclusion list
+      if (!isFirstWord && !isAfterPunctuation && isExcluded) {
         // return word unchanged
         return word.value;
       }
@@ -156,6 +156,7 @@ class ReCase {
             .split('-')
             .map((splitWord) => _upperCaseFirstLetter(splitWord));
 
+        // rejoin words into hyphenated whole
         return splitWords.join('-');
       }
 
@@ -163,6 +164,7 @@ class ReCase {
       return _upperCaseFirstLetter(word.value);
     }).toList();
 
+    // rejoin words into sentence string
     return words.join(separator);
   }
 
