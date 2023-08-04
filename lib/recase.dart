@@ -113,51 +113,48 @@ class ReCase {
     List<String> words = this._words.map((word) => word.toLowerCase()).toList();
     // exclusion list
     List<String> exclusionListEng = [
+      // articles
       'a',
       'an',
+      'the',
+      // coordinating conjunctions
       'and',
+      'but',
+      'for',
+      // 'nor', // not NYT-style
+      'or',
+      // 'so', // not NYT-style
+      'yet',
+      // short prepositions (< 4 chars)
       'as',
       'at',
-      'but',
       'by',
-      'for',
+      'en',
       'if',
       'in',
-      'nor',
       'of',
-      'off',
+      // 'off', // not NYT-style
       'on',
-      'or',
       'per',
-      'so',
-      'the',
       'to',
-      'up',
+      // 'up', // not NYT-style
+      'v.',
       'via',
-      'yet'
+      'vs.'
     ];
     List<String> punctuationList = [':', '--', '.', '?', '!'];
 
     // apply Title Case
-    words.asMap().entries.map((word) {
+    words = words.asMap().entries.map((word) {
       var isFirstWord = word.key == 0;
-      var isAfterPunctuation = punctuationList.indexOf(words[word.key - 1]) > 0;
+      var isAfterPunctuation =
+          !isFirstWord && punctuationList.indexOf(words[word.key - 1]) > 0;
       var isExcluded = exclusionListEng.indexOf(word.value) > 0;
 
       // If NOT first word exception AND is NOT after punctuation AND is part of the exclusion list
       if (!isFirstWord && !isAfterPunctuation && isExcluded) {
         // return word unchanged
         return word.value;
-      }
-
-      // if is hyphenated word
-      if (word.value.indexOf('-') > 0) {
-        var splitWords = word.value
-            .split('-')
-            .map((splitWord) => _upperCaseFirstLetter(splitWord));
-
-        // rejoin words into hyphenated whole
-        return splitWords.join('-');
       }
 
       // capitalize first letter of word
