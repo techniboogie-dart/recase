@@ -116,12 +116,14 @@ void main() {
   });
 
   group('Title Case', () {
+    const testTitle = 'pirates of the caribbean: the curse of the black pearl';
+
     test('from empty string.', () {
       expect(''.titleCase, equals(''));
     });
 
     test('from "${rcInput.originalText}".', () {
-      expect(rcInput.titleCase, equals('This is Some Sample Text You Dig?'));
+      expect(rcInput.titleCase, equals('This Is Some Sample Text You Dig?'));
     });
 
     test('from "${allCapsInput.originalText}".', () {
@@ -129,7 +131,12 @@ void main() {
     });
 
     test('from "${mockText}", using String extension.', () {
-      expect(mockText.titleCase, equals('This is Some Sample Text You Dig?'));
+      expect(mockText.titleCase, equals('This Is Some Sample Text You Dig?'));
+    });
+
+    test('from "${testTitle}", using String extension.', () {
+      expect(testTitle.titleCase,
+          equals('Pirates of the Caribbean: The Curse of the Black Pearl'));
     });
   });
 
