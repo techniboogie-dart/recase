@@ -121,7 +121,7 @@ void main() {
     });
 
     test('from "${rcInput.originalText}".', () {
-      expect(rcInput.titleCase, equals('This Is Some Sample Text You Dig?'));
+      expect(rcInput.titleCase, equals('This is Some Sample Text You Dig?'));
     });
 
     test('from "${allCapsInput.originalText}".', () {
@@ -129,7 +129,7 @@ void main() {
     });
 
     test('from "${mockText}", using String extension.', () {
-      expect(mockText.titleCase, equals('This Is Some Sample Text You Dig?'));
+      expect(mockText.titleCase, equals('This is Some Sample Text You Dig?'));
     });
   });
 
