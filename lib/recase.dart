@@ -148,8 +148,8 @@ class ReCase {
     words = words.asMap().entries.map((word) {
       var isFirstWord = word.key == 0;
       var isAfterPunctuation =
-          !isFirstWord && punctuationList.indexOf(words[word.key - 1]) > 0;
-      var isExcluded = exclusionListEng.indexOf(word.value) > 0;
+          !isFirstWord && punctuationList.contains(words[word.key - 1]);
+      var isExcluded = exclusionListEng.contains(word.value);
 
       // If NOT first word exception AND is NOT after punctuation AND is part of the exclusion list
       if (!isFirstWord && !isAfterPunctuation && isExcluded) {
