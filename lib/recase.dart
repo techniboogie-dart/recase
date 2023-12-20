@@ -68,7 +68,7 @@ class ReCase {
   String get headerCase => _getPascalCase(separator: '-');
 
   /// Title Case
-  String get titleCase => _getPascalCase(separator: ' ');
+  String get titleCase => _getTitleCase(separator: ' ');
 
   String _getCamelCase({String separator = ''}) {
     List<String> words = this._words.map(_upperCaseFirstLetter).toList();
@@ -103,6 +103,65 @@ class ReCase {
   String _getSnakeCase({String separator = '_'}) {
     List<String> words = this._words.map((word) => word.toLowerCase()).toList();
 
+    return words.join(separator);
+  }
+
+  // following APA Style guide:
+  // - https://apastyle.apa.org/style-grammar-guidelines/capitalization/title-case
+  String _getTitleCase({String separator = ' '}) {
+    // reset all to lowercase
+    List<String> words = this._words.map((word) => word.toLowerCase()).toList();
+    // exclusion list
+    List<String> exclusionListEng = [
+      // articles
+      'a',
+      'an',
+      'the',
+      // coordinating conjunctions
+      'and',
+      'but',
+      'for',
+      // 'nor', // not NYT-style
+      'or',
+      // 'so', // not NYT-style
+      'yet',
+      // short prepositions (< 4 chars)
+      'as',
+      'at',
+      'by',
+      'en',
+      'if',
+      'in',
+      'of',
+      // 'off', // not NYT-style
+      'on',
+      'per',
+      'to',
+      // 'up', // not NYT-style
+      'v.',
+      'via',
+      'vs.'
+    ];
+    List<String> punctuationList = [':', '--', '.', '?', '!'];
+
+    // apply Title Case
+    words = words.asMap().entries.map((word) {
+      var isFirstWord = word.key == 0;
+      var isAfterPunctuation =
+          !isFirstWord && punctuationList.contains(words[word.key - 1]);
+      var isExcluded = exclusionListEng.contains(word.value);
+
+      // If NOT first word exception AND is NOT after punctuation AND is part of the exclusion list
+      if (!isFirstWord && !isAfterPunctuation && isExcluded) {
+        // return word unchanged
+        return word.value;
+      }
+
+      // capitalize first letter of word
+      return _upperCaseFirstLetter(word.value);
+    }).toList();
+
+    // rejoin words into sentence string
     return words.join(separator);
   }
 
