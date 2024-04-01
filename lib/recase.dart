@@ -68,7 +68,7 @@ class ReCase {
   String get headerCase => _getPascalCase(separator: '-');
 
   /// Title Case
-  String get titleCase => _getPascalCase(separator: ' ');
+  String get titleCase => _getTitleCase(separator: ' ');
 
   String _getCamelCase({String separator = ''}) {
     List<String> words = this._words.map(_upperCaseFirstLetter).toList();
@@ -103,6 +103,72 @@ class ReCase {
   String _getSnakeCase({String separator = '_'}) {
     List<String> words = this._words.map((word) => word.toLowerCase()).toList();
 
+    return words.join(separator);
+  }
+
+  // following APA Style guide:
+  // - https://apastyle.apa.org/style-grammar-guidelines/capitalization/title-case
+  String _getTitleCase({String separator = ' '}) {
+    // reset all to lowercase
+    List<String> words = this._words.map((word) => word.toLowerCase()).toList();
+    // exclusion list
+    List<String> exclusionListEng = [
+      // articles
+      'a',
+      'an',
+      'the',
+      // coordinating conjunctions
+      'and',
+      'but',
+      'else',
+      'for',
+      'nor',
+      'or',
+      // 'so', // not NYT-style
+      'then',
+      'when',
+      'with',
+      'yet',
+      // short prepositions (< 4 chars)
+      'as',
+      'at',
+      'by',
+      'en',
+      'if',
+      'in',
+      'of',
+      // 'off', // not NYT-style
+      'on',
+      'per',
+      'to',
+      // 'up', // not NYT-style
+      'v',
+      'via',
+      'vs'
+    ];
+    List<String> punctuationList = [':', '--', '.', '?', '!'];
+
+    // apply Title Case
+    words = words.asMap().entries.map((entry) {
+      int index = entry.key;
+      String word = entry.value;
+
+      bool isAfterPunctuation = index > 0 && punctuationList.any(
+          (punctuation) => words[index - 1].endsWith(punctuation)
+      );
+      bool isExcluded = exclusionListEng.any(
+          (excluded) => excluded == word.toLowerCase()
+      );
+      bool isFirstOrLast = index == 0 || index == words.length - 1;
+      bool isNumber = RegExp(r'^\d+$').hasMatch(word);
+      bool shouldBeCapitalized = 
+          (isAfterPunctuation || !isExcluded || isFirstOrLast) 
+          && !isNumber;
+
+      return shouldBeCapitalized ? _upperCaseFirstLetter(word) : word;
+    }).toList();
+
+    // rejoin words into sentence string
     return words.join(separator);
   }
 
