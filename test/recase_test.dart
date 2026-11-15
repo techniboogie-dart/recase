@@ -20,7 +20,7 @@ void main() {
       expect(allCapsInput.snakeCase, equals('foo_bar'));
     });
 
-    test('from "${mockText}", using String extension.', () {
+    test('from "$mockText", using String extension.', () {
       expect(mockText.snakeCase, equals('this_is_some_sample_text_you_dig?'));
     });
   });
@@ -38,7 +38,7 @@ void main() {
       expect(allCapsInput.dotCase, equals('foo.bar'));
     });
 
-    test('from "${mockText}", using String extension.', () {
+    test('from "$mockText", using String extension.', () {
       expect(mockText.dotCase, equals('this.is.some.sample.text.you.dig?'));
     });
   });
@@ -56,7 +56,7 @@ void main() {
       expect(allCapsInput.pathCase, equals('foo/bar'));
     });
 
-    test('from "${mockText}", using String extension.', () {
+    test('from "$mockText", using String extension.', () {
       expect(mockText.pathCase, equals('this/is/some/sample/text/you/dig?'));
     });
   });
@@ -74,7 +74,7 @@ void main() {
       expect(allCapsInput.paramCase, equals('foo-bar'));
     });
 
-    test('from "${mockText}", using String extension.', () {
+    test('from "$mockText", using String extension.', () {
       expect(mockText.paramCase, equals('this-is-some-sample-text-you-dig?'));
     });
   });
@@ -92,7 +92,7 @@ void main() {
       expect(allCapsInput.pascalCase, equals('FooBar'));
     });
 
-    test('from "${mockText}", using String extension.', () {
+    test('from "$mockText", using String extension.', () {
       expect(mockText.pascalCase, equals('ThisIsSomeSampleTextYouDig?'));
     });
   });
@@ -110,7 +110,7 @@ void main() {
       expect(allCapsInput.headerCase, equals('Foo-Bar'));
     });
 
-    test('from "${mockText}", using String extension.', () {
+    test('from "$mockText", using String extension.', () {
       expect(mockText.headerCase, equals('This-Is-Some-Sample-Text-You-Dig?'));
     });
   });
@@ -128,7 +128,7 @@ void main() {
       expect(allCapsInput.titleCase, equals('Foo Bar'));
     });
 
-    test('from "${mockText}", using String extension.', () {
+    test('from "$mockText", using String extension.', () {
       expect(mockText.titleCase, equals('This Is Some Sample Text You Dig?'));
     });
   });
@@ -146,7 +146,7 @@ void main() {
       expect(allCapsInput.camelCase, equals('fooBar'));
     });
 
-    test('from "${mockText}", using String extension.', () {
+    test('from "$mockText", using String extension.', () {
       expect(mockText.camelCase, equals('thisIsSomeSampleTextYouDig?'));
     });
   });
@@ -164,9 +164,11 @@ void main() {
       expect(allCapsInput.sentenceCase, equals('Foo bar'));
     });
 
-    test('from "${mockText}", using String extension.', () {
+    test('from "$mockText", using String extension.', () {
       expect(
-          mockText.sentenceCase, equals('This is some sample text you dig?'));
+        mockText.sentenceCase,
+        equals('This is some sample text you dig?'),
+      );
     });
   });
 
@@ -183,9 +185,11 @@ void main() {
       expect(allCapsInput.constantCase, equals('FOO_BAR'));
     });
 
-    test('from "${mockText}", using String extension.', () {
+    test('from "$mockText", using String extension.', () {
       expect(
-          mockText.constantCase, equals('THIS_IS_SOME_SAMPLE_TEXT_YOU_DIG?'));
+        mockText.constantCase,
+        equals('THIS_IS_SOME_SAMPLE_TEXT_YOU_DIG?'),
+      );
     });
   });
 }
