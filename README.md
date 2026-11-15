@@ -2,10 +2,14 @@
 
 Changes the case of the input text to the desire case convention.
 
+Requires Dart 3.13 or later and is compatible with Flutter 3.47 or later.
+ReCase is a pure Dart package with no runtime dependencies. It can be used in
+Flutter apps with `material_ui` without importing or depending on a UI library.
+
     import 'package:recase/recase.dart';
 
     void main() {
-      ReCase rc = new ReCase('Just_someSample-text');
+      ReCase rc = ReCase('Just_someSample-text');
 
       print(rc.camelCase); // Prints 'justSomeSampleText'
       print(rc.constantCase); // Prints 'JUST_SOME_SAMPLE_TEXT'
@@ -21,7 +25,7 @@ String extensions are also available.
       print(sample.camelCase); // Prints 'justSomeSampleText'
       print(sample.constantCase); // Prints 'JUST_SOME_SAMPLE_TEXT'
     }
-_This feature is available in version 3.0.0, and requires at least Dart 2.6_
+_String extensions have been available since version 3.0.0._
 
 
 Supports:
